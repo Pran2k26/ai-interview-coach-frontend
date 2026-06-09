@@ -270,6 +270,12 @@ function Dashboard() {
           >
             📄 Analyze Resume
           </button>
+          <button
+  onClick={() => navigate("/resume-match")}
+  className="w-full mt-4 py-4 rounded-xl bg-linear-to-r from-cyan-600 to-blue-600 text-white font-bold text-lg hover:scale-105 transition"
+>
+  🎯 Resume vs Job Description
+</button>
 
         </div>
 
@@ -306,6 +312,22 @@ function Dashboard() {
             </p>
 
           </div>
+
+          <div className="bg-slate-800 rounded-2xl p-5 text-center hover:scale-105 transition duration-300">
+
+  <div className="text-4xl">
+    🎯
+  </div>
+
+  <h3 className="text-white font-semibold mt-3">
+    Resume Matcher
+  </h3>
+
+  <p className="text-gray-400 text-sm mt-2">
+    Compare your resume with any job description using AI
+  </p>
+
+</div>
 
           <div className="bg-slate-800 rounded-2xl p-5 text-center hover:scale-105 transition duration-300">
 
