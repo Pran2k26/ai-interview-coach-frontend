@@ -125,7 +125,19 @@ function Features() {
     },
 
     { icon: <FileText size={45} />, title: "Resume vs Job Matcher", desc: "Compare your resume with any job description and get an AI-powered match score, missing skills, and personalized improvement suggestions.", },
-  ];
+ 
+     {
+    icon: <Brain size={45} />,
+    title: "RAG Interview System",
+    desc: "Practice context-aware interviews using Retrieval-Augmented Generation (RAG) for realistic company-based questions.",
+  },
+
+   {
+    icon: <History size={45} />,
+    title: "Interview History",
+    desc: "Access previous interviews anytime and track your improvement over time.",
+  },
+];
 
   return (
     <section
