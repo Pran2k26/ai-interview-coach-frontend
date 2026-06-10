@@ -123,6 +123,8 @@ function Features() {
       title: "AI Roadmap Generator",
       desc: "Generate a personalized learning roadmap with weekly plans, projects, resources, and interview tips.",
     },
+
+    { icon: <FileText size={45} />, title: "Resume vs Job Matcher", desc: "Compare your resume with any job description and get an AI-powered match score, missing skills, and personalized improvement suggestions.", },
   ];
 
   return (

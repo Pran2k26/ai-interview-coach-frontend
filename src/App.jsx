@@ -9,6 +9,8 @@ import Roadmap from "./pages/Roadmap";
 import ResumeAnalyzer from "./pages/ResumeAnalyzer";
 import Contact from "./pages/Contact";
 import ResumeMatcher from "./pages/ResumeMatcher";
+import RagInterview from "./pages/RagInterview";
+
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
         <Route path="/resume" element={<ResumeAnalyzer />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/resume-match" element={<ResumeMatcher />}/>
+        <Route path="/rag" element={<RagInterview />} />
 
       </Routes>
     </BrowserRouter>
