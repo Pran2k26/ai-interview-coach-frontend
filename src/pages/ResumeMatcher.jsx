@@ -44,7 +44,7 @@ function ResumeMatcher() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-black p-8">
+    <div className="min-h-screen bg-linear-to-br from-slate-950 via-indigo-950 to-black p-8">
 
       <div className="max-w-5xl mx-auto bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 p-8">
 
@@ -77,7 +77,7 @@ function ResumeMatcher() {
 
         <button
           onClick={matchResume}
-          className="mt-6 w-full py-4 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold text-lg hover:scale-105 transition"
+          className="mt-6 w-full py-4 rounded-xl bg-linear-to-r from-cyan-600 to-blue-600 text-white font-bold text-lg hover:scale-105 transition"
         >
           {loading ? "Matching..." : "🎯 Match Resume"}
         </button>

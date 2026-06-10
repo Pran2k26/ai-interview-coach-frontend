@@ -254,7 +254,7 @@ function RagInterview() {
 
     return (
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-black flex justify-center items-center">
+      <div className="min-h-screen bg-linear-to-br from-slate-950 via-indigo-950 to-black flex justify-center items-center">
 
         <div className="bg-white/10 p-10 rounded-3xl text-center border border-white/20">
 
@@ -286,7 +286,7 @@ function RagInterview() {
 
   return (
 
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-black p-8">
+    <div className="min-h-screen bg-linear-to-br from-slate-950 via-indigo-950 to-black p-8">
 
       <div className="max-w-4xl mx-auto bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20">
 
