@@ -31,11 +31,22 @@ function HowItWorks() {
       title: "Analyze Resume",
       desc: "Upload your resume to get ATS compatibility score, missing skills, strengths, and AI recommendations.",
     },
+
+    {
+    icon: <MessageSquareText size={45} />,
+    title: "RAG Interview",
+    desc: "Upload your resume and practice personalized interview questions generated from your own experience and skills.",
+  },
     {
       icon: <Map size={45} />,
       title: "Generate AI Roadmap",
       desc: "Create a personalized learning roadmap with weekly goals, projects, resources, and interview preparation tips.",
     },
+     {
+    icon: <Sparkles size={45} />,
+    title: "Interview History",
+    desc: "Review all your previous AI and Resume-based interviews, scores, answers, and feedback to track your progress over time.",
+  },
   ];
 
   return (

@@ -216,9 +216,18 @@ function Dashboard() {
 
                   {/* LEFT */}
                   <div>
-                    <h3 className="text-white font-semibold">
+                    {/* <h3 className="text-white font-semibold">
                       {item.role}
-                    </h3>
+                    </h3> */}
+                    <h3 className="text-white font-semibold">
+  {item.role}
+</h3>
+
+<p className="text-xs text-indigo-400 mt-1">
+  {item.interviewType === "RAG"
+    ? "🧠 Resume RAG Interview"
+    : "🤖 AI Generated Interview"}
+</p>
                     <p className="text-gray-400 text-sm">
                       {item.level}
                     </p>
@@ -226,9 +235,12 @@ function Dashboard() {
 
                   {/* RIGHT */}
                   <div className="text-right">
-                    <p className="text-green-400 font-bold">
+                    {/* <p className="text-green-400 font-bold">
                       Score: {item.totalScore || "N/A"}
-                    </p>
+                    </p> */}
+                    <p className="text-green-400 font-bold">
+  Score: {item.totalScore}
+</p>
                     <p className="text-gray-500 text-sm">
                       {new Date(item.createdAt).toLocaleDateString()}
                     </p>

@@ -1,133 +1,4 @@
 
-// import { useState } from "react";
-// import axios from "../api/axios";
-
-// function RagInterview() {
-
-//   const [file, setFile] = useState(null);
-//   const [questions, setQuestions] = useState([]);
-//   const [loading, setLoading] = useState(false);
-
-//   const generateInterview = async () => {
-
-//     if (!file) {
-//       alert("Please upload your resume");
-//       return;
-//     }
-
-//     try {
-
-//       setLoading(true);
-
-//       const formData = new FormData();
-
-//       formData.append("resume", file);
-
-//       const res = await axios.post(
-//         "/rag",
-//         formData,
-//         {
-//           headers: {
-//             "Content-Type": "multipart/form-data",
-//           },
-//         }
-//       );
-
-//       setQuestions(res.data.questions);
-
-//     } catch (err) {
-
-//       console.log(err);
-
-//       alert("Failed to generate interview");
-
-//     }
-
-//     setLoading(false);
-
-//   };
-
-//   return (
-
-//     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-black p-8">
-
-//       <div className="max-w-5xl mx-auto bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20">
-
-//         <h1 className="text-4xl text-center text-white font-bold">
-
-//           🧠 RAG Interview Generator
-
-//         </h1>
-
-//         <p className="text-center text-gray-400 mt-3">
-
-//           Upload your resume and generate personalized interview questions.
-
-//         </p>
-
-//         <input
-//           type="file"
-//           accept=".pdf"
-//           className="mt-8 text-white"
-//           onChange={(e) => setFile(e.target.files[0])}
-//         />
-
-//         <button
-//           onClick={generateInterview}
-//           className="w-full mt-6 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold"
-//         >
-
-//           {loading
-//             ? "Generating..."
-//             : "Generate RAG Interview"}
-
-//         </button>
-
-//         {questions.length > 0 && (
-
-//           <div className="mt-10">
-
-//             <h2 className="text-3xl text-white font-bold mb-6">
-
-//               Interview Questions
-
-//             </h2>
-
-//             {questions.map((q, index) => (
-
-//               <div
-//                 key={index}
-//                 className="bg-slate-800 rounded-xl p-5 mb-4"
-//               >
-
-//                 <h3 className="text-indigo-400 font-bold">
-
-//                   Question {index + 1}
-
-//                 </h3>
-
-//                 <p className="text-white mt-2">
-
-//                   {q}
-
-//                 </p>
-
-//               </div>
-
-//             ))}
-
-//           </div>
-
-//         )}
-
-//       </div>
-
-//     </div>
-
-//   );
-// }
-
-// export default RagInterview;
 import { useState } from "react";
 import axios from "../api/axios";
 
@@ -144,6 +15,7 @@ function RagInterview() {
   const [completed, setCompleted] = useState(false);
 
   const [allScores, setAllScores] = useState([]);
+  const [allAnswers, setAllAnswers] = useState([]);
 
   const startInterview = async () => {
 
@@ -191,14 +63,31 @@ function RagInterview() {
 
       setLoading(true);
 
-      const res = await axios.post(
-        "/rag/evaluate",
-        {
-          question: questions[current],
-          answer: answer,
-        }
-      );
+    //   const res = await axios.post(
+    //     "/rag/evaluate",
+    //     {
+    //       question: questions[current],
+    //       answer: answer,
+    //     }
+    //   );
 
+    const token = localStorage.getItem("token");
+
+const res = await axios.post(
+  "/rag/evaluate",
+  {
+    question: questions[current],
+    answer: answer,
+    role: "Resume Based Interview",
+    level: "Resume",
+    completed: current === questions.length - 1,
+  },
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
       const result = res.data.result;
 
       const scoreMatch = result.match(/Score:\s*(.*)/);
@@ -219,6 +108,43 @@ function RagInterview() {
         ...allScores,
         extractedScore,
       ]);
+
+    const updatedAnswers = [
+  ...allAnswers,
+  {
+    question: questions[current],
+    userAnswer: answer,
+    aiFeedback: result,
+    score: Number(extractedScore.match(/\d+/)?.[0] || 0),
+  },
+];
+
+setAllAnswers(updatedAnswers);
+
+// 👇 ADD THIS HERE
+if (current === questions.length - 1) {
+
+  const token = localStorage.getItem("token");
+
+  await axios.post(
+    "/rag/evaluate",
+    {
+      role: "Resume Based Interview",
+      level: "Resume",
+      completed: true,
+      questions: updatedAnswers,
+      totalScore: updatedAnswers.reduce(
+        (sum, item) => sum + item.score,
+        0
+      ),
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+}
 
     } catch (err) {
 
